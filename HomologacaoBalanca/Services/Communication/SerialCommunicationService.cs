@@ -32,11 +32,15 @@ namespace HomologacaoBalanca.Services.Communication
             if (_serialPort == null) return;
 
             string data = _serialPort.ReadExisting();
-            Console.WriteLine($"Recebido: {data}");
 
-            data = HandleScaleMessage(data);
+            if (string.IsNullOrEmpty(data))
+            {
+                Console.WriteLine($"Recebido: {data}");
+                
+                data = HandleScaleMessage(data);
 
-            ReceivedData?.Invoke(decimal.Parse(data));
+                ReceivedData?.Invoke(decimal.Parse(data));
+            }            
         }
 
         internal string HandleScaleMessage(string data)
