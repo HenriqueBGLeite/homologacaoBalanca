@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HomologacaoBalanca.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="MainPage">
+    <VerticalStackLayout
+        Padding="30"
+        HorizontalOptions="Center"
+        Spacing="10"
+        WidthRequest="400">
+        <Editor
+            HorizontalTextAlignment="Center"
+            IsReadOnly="True"
+            Keyboard="Numeric"
+            Placeholder="Aqui será exibido o peso"
+            Text="{Binding ReceivedData}"
+            VerticalTextAlignment="Center" />
+        <Picker
+            IsEnabled="{Binding CanConnect}"
+            ItemsSource="{Binding ConnectionOptions}"
+            SelectedItem="{Binding SelectedConnectionType}" />
+        <Picker
+            IsEnabled="{Binding CanConnect}"
+            IsVisible="{Binding ShowAvailablePorts}"
+            ItemsSource="{Binding AvailablePorts}"
+            SelectedItem="{Binding SelectedPort}" />
+        <Button
+            BackgroundColor="Green"
+            Command="{Binding ConnectCommand}"
+            FontAttributes="Bold"
+            FontSize="18"
+            IsEnabled="{Binding CanConnect}"
+            Text="Conectar"
+            TextColor="White" />
+        <Button
+            BackgroundColor="OrangeRed"
+            Command="{Binding DisconnectCommand}"
+            FontAttributes="Bold"
+            FontSize="18"
+            IsEnabled="{Binding Connected}"
+            Text="Desconectar"
+            TextColor="White" />
+        <Button
+            BackgroundColor="Blue"
+            Command="{Binding GetWeightCommand}"
+            FontAttributes="Bold"
+            FontSize="18"
+            IsEnabled="{Binding Connected}"
+            Text="Buscar Peso Balança"
+            TextColor="White" />
+        <Editor
+            HorizontalTextAlignment="Center"
+            IsEnabled="{Binding Connected}"
+            Placeholder="Digite um valor"
+            Text="{Binding MsgCommand}"
+            VerticalTextAlignment="Center" />
+        <Button
+            BackgroundColor="Blue"
+            Command="{Binding SendCommand}"
+            FontAttributes="Bold"
+            FontSize="18"
+            IsEnabled="{Binding Connected}"
+            Text="Enviar"
+            TextColor="White" />
+
+    </VerticalStackLayout>
+</ContentPage>
