@@ -1,1 +1,28 @@
+# Diretórios comuns a todos os projetos .NET
+bin/
+obj/
+
+# Arquivos de configurações de IDE
 .vs/
+.idea/
+.vscode/
+
+# Arquivos de build gerados (dependências, binários, pacotes)
+*.dll
+*.exe
+*.pdb
+*.app
+*.apk
+*.ipa
+
+# Logs de execução e de ferramentas de CI
+*.log
+
+# Dados gerados durante execução
+artifacts/
+
+# Arquivos gerados por IDEs como Rider
+.idea/
+
+# MacOS
+.DS_Store
