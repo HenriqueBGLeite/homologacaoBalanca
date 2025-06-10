@@ -560,3 +560,4 @@ C:\Projetos\.net MAUI\HomologacaoBalanca\HomologacaoBalanca\obj\Debug\net9.0-win
 C:\Projetos\.net MAUI\HomologacaoBalanca\HomologacaoBalanca\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 C:\Projetos\.net MAUI\HomologacaoBalanca\HomologacaoBalanca\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Projetos\.net MAUI\HomologacaoBalanca\HomologacaoBalanca\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Projetos\.net MAUI\HomologacaoBalanca\HomologacaoBalanca\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\HomologacaoBalanca.sourcelink.json

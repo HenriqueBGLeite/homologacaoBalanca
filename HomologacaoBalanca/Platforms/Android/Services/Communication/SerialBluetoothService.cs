@@ -26,13 +26,6 @@ namespace HomologacaoBalanca.Services.Communication
             portName = "HD_EASY773223013";
 
             var adapter = BluetoothAdapter.DefaultAdapter;
-            Console.WriteLine("Dispositivos emparelhados:");
-
-            foreach (var d in adapter.BondedDevices)
-            {
-                Console.WriteLine($"- {d.Name} ({d.Address})");
-            }
-
             var device = adapter.BondedDevices.FirstOrDefault(d => d.Name == portName);
 
             if (device == null)
@@ -50,7 +43,8 @@ namespace HomologacaoBalanca.Services.Communication
                 _reader = new StreamReader(_socket.InputStream);
                 _writer = new StreamWriter(_socket.OutputStream) { AutoFlush = true };
 
-                // Start reading in background
+                await SendCommandAsync(";peso\r");
+
                 _cts = new CancellationTokenSource();
                 _ = Task.Run(ReadLoopAsync, _cts.Token);
 
@@ -65,8 +59,6 @@ namespace HomologacaoBalanca.Services.Communication
 
         public Task<bool> ConnectAsync()
         {
-            // Para compatibilidade com a interface
-            // Você pode escolher deixar vazio ou delegar para o ConnectAsync(portName)
             throw new NotImplementedException("Use ConnectAsync(string portName) instead.");
         }
 
@@ -92,12 +84,6 @@ namespace HomologacaoBalanca.Services.Communication
             }
 
             await _writer.WriteLineAsync(command);
-            // Aqui depende do protocolo da balança: 
-            // algumas balanças enviam a resposta como notificação;
-            // outras você precisa ler a resposta.
-            // Se a balança responder imediatamente, você pode:
-            // var response = await _reader.ReadLineAsync();
-            // return response;
 
             return "Command sent.";
         }
@@ -118,12 +104,7 @@ namespace HomologacaoBalanca.Services.Communication
 
                     if (!string.IsNullOrEmpty(line))
                     {
-                        Console.WriteLine($"Peso enviado pela balança: {line}");
                         line = CleanWeightData(line);
-                        Console.WriteLine($"***********************************");
-                        Console.WriteLine($"Peso após formatação: {line}");
-
-                        Console.WriteLine($"Received: {line}");
 
                         if (decimal.TryParse(line, out decimal value))
                         {
